@@ -2,6 +2,8 @@ const express = require('express')
 const routes = express.Router()
 const conexion = require('../conexion');
 usua = [];
+maq = [];
+solu = [];
 //cuando el usuario digita la ruta database/consultas lo envia al metodo get
 //aqui abajo linea 6
 routes.get('/consultas', (req, res) => {
@@ -63,7 +65,7 @@ routes.get('/login',(req,res)=>{
 routes.post('/ingresar',(req, res) => {
     usuario = []
     console.log(req.body.NombreUsuario)
-    console.log(req.body.Contrasena)
+    console.log(req.body.ContrasenaUsuario)
     console.log(req.body)
     conexion.query('SELECT * FROM Registro_db WHERE NombreUsuario = ? AND ContrasenaUsuario = ?',[req.body.NombreUsuario,req.body.ContrasenaUsuario],function(error,results,fields){
         if (error){
@@ -79,6 +81,40 @@ routes.post('/ingresar',(req, res) => {
 
             res.render("validado",{
                 arrayMascotas: usuario})
+
+        }
+    })
+})
+/*
+routes.get('/login',(req,res)=>{
+    //muestre en el navegador /vista/formulario.html por senFile linea 20
+    //res.sendFile('registrarse.ejs',{root:__dirname})
+    res.render("acceso")
+})*/
+
+
+routes.post('/buscarmaquina',(req, res) => {
+    //usuario = []
+    //console.log(req.body.NombreUsuario)
+    //console.log(req.body.ContrasenaUsuario)
+    console.log(req.body.RefMaquina)
+    console.log(req.body)
+    conexion.query('SELECT * FROM Maquina_db WHERE RefMaquina = ?',[req.body.RefMaquina],function(error,results,fields){
+        if (error){
+            return res.send(error);
+        } else {
+
+            //res.send('<script>window.location.href="/database/consultas";</script>');
+            results.forEach(element => {
+                //console.log("esto es consultas"+element);
+
+                maq.push(element);
+                console.log(element)
+                });
+                usua.push(req.body)
+            res.render("mostrarmaquina",{
+                arrayMaquina: maq,
+                arrayMascotas: usua})
 
         }
     })
