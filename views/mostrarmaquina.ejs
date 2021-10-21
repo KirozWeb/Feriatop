@@ -6,24 +6,33 @@
                 <thead>
                   <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Nombre</th>
+                    <th scope="col">Referencia</th>
                     <th scope="col">Descripcion</th>
-                    <th scope="col">Accion</th>
+                    <th scope="col">Fecha Creacion</th>
+                    <th scope="col">Id Usuario</th>
+                    <th scope="col">Solucion</th>
                   </tr>
                 </thead>
                 <tbody>
 
-
-
-
-                    <% if (arrayMascotas.length > 0) { %>
-                        <%  arrayMascotas.forEach(mascota => {%>
+                    <% if (arrayMaquina.length > 0) { %>
+                        <%  arrayMaquina.forEach(maquina=> {%>
                             <tr>
-                                <th scope="row"><%= mascota.IdUsuario %> </th>
-                                <td><%= mascota.NombreUsuario%></td>
-                                <td><%= mascota.ContrasenaUsuario%></td>
-                                <td>dk</td>
+                                <th scope="row"><%= maquina.IdMaquina%> </th>
+                                <td><%= maquina.RefMaquina%></td>
+                                <td><%= maquina.DescMaquina%></td>
+                                <td><%= maquina.FechaMaquina%></td>
+                                <td><%= maquina.IdUsuario%></td>
+                                <td>
+                                  <form class="d-flex" action="./grabarsolucion"id="formulario" name="formulario" method="post">
+                                    <input type="hidden" id="IdMaquina" name="IdMaquina" value="<%= maquina.IdMaquina %>">
+                                    <input type="hidden" id="RefMaquina" name="RefMaquina" value="<%= maquina.RefMaquina %>">
+                                    <input type="hidden" id="IdUsuario" name="IdUsuario" value="<%= maquina.IdUsuario %>">
+                                    <textarea class="form-control me-2" type="textarea"id="DescSolucion" name="DescSolucion" type="search" placeholder="Solucion sugerida" aria-label="Search"></textarea>
+                                    <button class="btn btn-outline-success" type="submit">Search</button>
 
+                                  </form>
+                                </td>
                             </tr>
 
                       <% }) %>
