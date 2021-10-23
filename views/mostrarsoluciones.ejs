@@ -1,0 +1,38 @@
+<%-include("template/cabecera.ejs", {tituloWeb: 'Pagina de inicio'}) %>
+
+    <div class = "container">ejeseupelon
+
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Referencia</th>
+                    <th scope="col">Descripcion</th>
+                    <th scope="col">Fecha Creacion</th>
+                    <th scope="col">Id Usuario</th>
+
+                  </tr>
+                </thead>
+                <tbody>
+
+                    <% if (arrayMaquina.length > 0) { %>
+                        <%  arrayMaquina.forEach(maquina=> {%>
+                            <tr>
+                                <th scope="row"><%= maquina.IdSolucion%> </th>
+                                <td><%= maquina.RefMaquina%></td>
+                                <td><%= maquina.DescSolucion%></td>
+                                <td><%= maquina.FechaSolucion%></td>
+                                <td><%= maquina.IdMaquina%></td>
+
+
+
+                            </tr>
+
+                      <% }) %>
+                    <% } %>
+
+                </tbody>
+              </table>
+
+    </div>
+<%-include("template/footer.ejs") %>

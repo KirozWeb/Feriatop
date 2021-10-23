@@ -87,6 +87,38 @@ routes.post('/ingresar',(req, res) => {
     })
     perfil = []
 })
+/*---------------------------------------*/
+//borrar_usuario/:id
+routes.get('/consultamaquina/:id',(req, res) => {
+    solu = []
+    maq = []
+    cont = 0;
+    let id = req.params.id
+    solu.push(req.body.IdUsuario)
+        conexion.query('SELECT * FROM Solucion_db WHERE  IdMaquina = ?',[id],function(error,results,fields){
+            if (error){
+                return res.send(error);
+            } else {
+
+                //res.send('<script>window.location.href="/database/consultas";</script>');
+                results.forEach(element => {
+
+                    console.log(element)
+                    maq.push(element)
+                    cont++;
+                    });
+                    console.log("este es contador :" + cont)
+
+                    //maq[0].IdUsuario = solu;
+                    console.log("esta es la longitud de: "+ maq)
+                    res.render("mostrarsoluciones",{
+                    arrayMaquina: maq})
+
+            }
+        })
+    })
+
+
 
 routes.post('/buscarmaquina',(req, res) => {
 solu = []

@@ -24,15 +24,13 @@
                                 <div class="abs-center">
                                 <div class="p-3 mb-2 bg-dark text-white">
                             <form class="border p-3 form" action="../updateusuario" id="formulario" name="formulario" method="post">
-
-                                <input  type="hidden" id="IdUsuario" name="IdUsuario" value="<%= mascota.IdUsuario%>">
+                                <label for="nombre">Nombre</label>
+                                <br>
+                                <input  type="text" id="NombreUsuario" name="nombreUsuario" value="<%= mascota.NombreUsuario%>">
+                                <br>
                                 <label for="contrasena">Contraseña</label>
                                 <br>
                                 <input  type="text" id="ContrasenaUsuario" name="ContrasenaUsuario" value="<%= mascota.ContrasenaUsuario%>">
-                                <br>
-                                <label for="nombreusuario">Nombre usuario</label>
-                                <br>
-                                <input  type="text" id="NombreUsuario" name="NombreUsuario" value="<%= mascota.NombreUsuario%>">
                                 <br>
                                 <label for="perfilusuario">Perfil Usuario</label>
                                 <br>
@@ -49,6 +47,7 @@
                                 <label for="paisusuario">Pais Usuario</label>
                                 <br>
                                 <input type="text" id="PaisUsuario" name="PaisUsuario"value="<%= mascota.PaisUsuario%>">
+                                <input  type="hidden" id="IdUsuario" name="IdUsuario" value="<%= mascota.IdUsuario%>">
                                 <br>
                                 <br>
                                 <input type="submit" id="enviar" value="Guardar registros" class="btn btn-outline-success">

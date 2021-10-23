@@ -89,3 +89,17 @@ routes.post('/eliminar',(req, res) => {
         })
     })
 })
+//pertenecia a mostrarsoluciones
+<form class="d-flex" action="./grabarsolucion"id="formulario" name="formulario" method="post">
+                                    <input type="hidden" id="IdMaquina" name="IdMaquina" value="<%= maquina.IdMaquina %>">
+                                    <input type="hidden" id="RefMaquina" name="RefMaquina" value="<%= maquina.RefMaquina %>">
+                                    <input type="hidden" id="IdUsuario" name="IdUsuario" value="<%= maquina.IdUsuario %>">
+                                    <textarea class="form-control me-2" type="textarea"id="DescSolucion" name="DescSolucion" type="search" placeholder="Solucion sugerida" aria-label="Search"></textarea>
+                                    <button class="btn btn-outline-success" type="submit">Crear</button>
+                                    </form>
+
+                                    <td>
+                                      <a href="/database/consultamaquina/<%= mascota.IdMaquina%>" class="btn btn-warning btn-sm">Editar</a>
+                                    </td>
+
+                                    mostrarsoluciones

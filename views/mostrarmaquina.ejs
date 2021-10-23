@@ -30,8 +30,10 @@
                                     <input type="hidden" id="RefMaquina" name="RefMaquina" value="<%= maquina.RefMaquina %>">
                                     <input type="hidden" id="IdUsuario" name="IdUsuario" value="<%= maquina.IdUsuario %>">
                                     <textarea class="form-control me-2" type="textarea"id="DescSolucion" name="DescSolucion" type="search" placeholder="Solucion sugerida" aria-label="Search"></textarea>
-                                    <button class="btn btn-outline-success" type="submit">Crear</button>
-
+                                    <button class="btn btn-warning btn-sm" type="submit">Crear Solu</button>
+                                    <td>
+                                      <a href="/database/consultamaquina/<%= maquina.IdMaquina%>" class="btn btn-warning btn-sm">Ver Todas</a>
+                                    </td>
                                   </form>
                                 </td>
                             </tr>
