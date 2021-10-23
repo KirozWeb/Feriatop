@@ -13,49 +13,42 @@
             <a class="nav-link" href="/servicios">Servicios</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="/database/consultas">Consultas</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="/database/registrar">Registro</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/database/login">Login</a>
           </li>
-
-          <% if (usuario.length > 0) { %>
-            <%  usuario.forEach(mascota => {%>
-              <% if (mascota.PerfilUsuario === 'administrador') { %>
           <li class="nav-item">
             <a class="nav-link" href="/database/buscausuario">busca usuario</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/database/consulta_usuario">consulta usuario</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/serviciose">404</a>
+          </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Dropdown
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="/database/consulta_usuario">Action</a></li>
+              <li><a class="dropdown-item" href="#">Action</a></li>
               <li><a class="dropdown-item" href="#">Another action</a></li>
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" href="#">Something else here</a></li>
             </ul>
           </li>
-          <% } %>
-          <% if (mascota.PerfilUsuario === 'fabricante'||mascota.PerfilUsuario === 'operador') { %>
-          <li class="nav-item">
-            <a class="nav-link" href="/database/search_maquina">Buscar Maquina</a>
-          </li>
-          <% } %>
-            <% }) %>
           <li class="nav-item">
             <a class="nav-link disabled">Disabled</a>
           </li>
         </ul>
         <form class="d-flex">
-          <input class="form-control me-2" type="text"  value = "<%=usuario[0].PerfilUsuario%>">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
-        <% } %>
-
       </div>
     </div>
   </nav>

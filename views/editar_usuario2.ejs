@@ -1,0 +1,67 @@
+<%-include("template/cabecera.ejs", {tituloWeb: 'Pagina de inicio'}) %>
+
+    <div class = "container">ejeseupelon
+
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Descripcion</th>
+                    <th scope="col">Accion</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <% if (arrayMascotas.length > 0) { %>
+                        <%  arrayMascotas.forEach(mascota => {%>
+                            <tr>
+                                <th scope="row"><%= mascota.IdUsuario %> </th>
+                                <td><%= mascota.ContrasenaUsuario%></td>
+                                <td><%= mascota.NombreUsuario%></td>
+                                <td>@mdo</td>
+                            </tr>
+                            <div class="container">
+                                <div class="abs-center">
+                                <div class="p-3 mb-2 bg-dark text-white">
+                            <form class="border p-3 form" action="../updateusuario" id="formulario" name="formulario" method="post">
+
+                                <input  type="hidden" id="IdUsuario" name="IdUsuario" value="<%= mascota.IdUsuario%>">
+                                <label for="contrasena">Contraseña</label>
+                                <br>
+                                <input  type="text" id="ContrasenaUsuario" name="ContrasenaUsuario" value="<%= mascota.ContrasenaUsuario%>">
+                                <br>
+                                <label for="nombreusuario">Nombre usuario</label>
+                                <br>
+                                <input  type="text" id="NombreUsuario" name="NombreUsuario" value="<%= mascota.NombreUsuario%>">
+                                <br>
+                                <label for="perfilusuario">Perfil Usuario</label>
+                                <br>
+                                <input type="text" id="PerfilUsuario" name="PerfilUsuario" value="<%= mascota.PerfilUsuario%>">
+                                <br>
+                                <label for="telefonousuario">Telefono Usuario</label>
+                                <br>
+                                <input type="text" id="TelefonoUsuario" name="TelefonoUsuario" value="<%= mascota.TelefonoUsuario%>">
+                                <br>
+                                <label for="correousuario">Correo Usuario</label>
+                                <br>
+                                <input type="text" id="CorreoUsuario" name="CorreoUsuario" value="<%= mascota.CorreoUsuario%>">
+                                <br>
+                                <label for="paisusuario">Pais Usuario</label>
+                                <br>
+                                <input type="text" id="PaisUsuario" name="PaisUsuario"value="<%= mascota.PaisUsuario%>">
+                                <br>
+                                <br>
+                                <input type="submit" id="enviar" value="Guardar registros" class="btn btn-outline-success">
+                            </form>
+                            </div>
+                            </div>
+                            </div>
+                      <% }) %>
+                    <% } %>
+
+                </tbody>
+              </table>
+
+    </div>
+
+<%-include("template/footer.ejs") %>
