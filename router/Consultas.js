@@ -49,11 +49,11 @@ routes.post('/ingresar',(req, res) => {
                 perfil.push(element.PerfilUsuario);
                 usuario.push(element);
                 });
-                console.log("esto es perfiles" + perfil[0])
+                console.log("esto es perfiles" + perfil)
                 console.log("esto es usuario " + usuario.PerfilUsuario);
-                req.session.rol = perfil[0];
-                res.locals.user = req.session.rol;
-                console.log("esto ese res local "+res.locals.user)
+                req.session.rol = perfil;
+                //res.locals.user = req.session.rol;
+                console.log("esto ese res local "+req.session.rol)
 
                 if(perfil[0] === 'administrador'){
                     res.render("validado",{
@@ -187,6 +187,20 @@ routes.post('/buscar_usuario',(req, res) => {
             }*/
     })
 })
+routes.get('/darse_baja',(req,res)=>{
+    res.render("darsebaja",{
+        arrayMascotas: usuario
+    })
+})
+routes.get('/no_darse_baja',(req,res)=>{
+res.render("index",{titulo : "ha cancelado eliminar su registro",
+                    arrayMascotas : usuario})
+                })
+/*routes.get('/si_darse_baja',(req,res)=>{
+    usuario = [];
+    res.render("index",{titulo : "se ha dado de baja",
+                    arrayMascotas : usuario})
+                })*/
 
 routes.get('/borrar_usuario/:id',(req, res) => {
     let id = req.params.id
@@ -198,7 +212,16 @@ routes.get('/borrar_usuario/:id',(req, res) => {
             return res.send(error);
         } else {
 
-            res.send('<script>window.location.href="/database/consulta_usuario";</script>');
+            /*res.send('<script>window.location.href="/database/consulta_usuario";</script>');*/
+            if(req.session.rol[0] === "administrador"){
+                res.send('<script>window.location.href="/database/consulta_usuario";</script>');
+            }
+            else{
+                usuario = []
+                res.render("index",{titulo : "sus datos se han actualizado",
+                    arrayMascotas : usuario})
+
+            }
             /*res.render("consulta_usuario",{
                 arrayMascotas: user})*/
             }
@@ -229,6 +252,29 @@ routes.get('/buscar_usuario/:id',(req, res) => {
             }*/
     })
 })
+/*
+routes.get('/actualizar_usuario/:id',(req, res) => {
+    let id = req.params.id
+    console.log(id)
+    //usuario = []
+    user = []
+    conexion.query('SELECT * FROM Registro_db WHERE IdUsuario = ?',[id],function(error,results,fields){
+        if (error){
+            return res.send(error);
+        } else {
+            results.forEach(element => {
+                user.push(element);
+                });
+
+            res.render("editar_usuario2",{
+                arrayMascotas: user})
+            }
+            /*res.render("editar_usuario",{
+                arrayMascotas: usuario})
+            }*/
+            /*
+    })
+})*/
 
 
 routes.post('/updateusuario',(req, res) => {
@@ -242,7 +288,15 @@ routes.post('/updateusuario',(req, res) => {
         } else {
             /*console.log("registro actualizado")
             res.render("index",{titulo : "Registro Actualizado"})*/
-            res.send('<script>window.location.href="/database/consulta_usuario";</script>');
+            console.log(req.session.rol)
+            if(req.session.rol[0] === "administrador"){
+                res.send('<script>window.location.href="/database/consulta_usuario";</script>');
+            }
+            else{
+                res.render("index",{titulo : "sus datos se han actualizado",
+                    arrayMascotas : usuario})
+
+            }
             }
     })
 })

@@ -3,12 +3,10 @@
     <div class="abs-center">
     <div class="p-3 mb-2 bg-dark text-white">
 <form class="border p-3 form" action="./buscar_usuario" id="formulario" name="formulario" method="post">
-    <label for="usuario">Id Usuario</label>
-    <br>
-    <input  type="text" id="IdUsuario" name="IdUsuario">
-    <br>
 
-    <input type="submit" id="enviar" value="Buscar usuario" class="btn btn-outline-success">
+
+    <a href="/database/borrar_usuario/<%=usuario[0].IdUsuario%>"><input type="button" id="enviar" value="darse de baja" class="btn btn-outline-success"></a>
+    <a href="/database/no_darse_baja"><input type="button" id="enviar" value="cancelar" class="btn btn-outline-success"></a>
 </form>
 </div>
 </div>

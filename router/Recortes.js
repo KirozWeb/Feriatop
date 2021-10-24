@@ -103,3 +103,5 @@ routes.post('/eliminar',(req, res) => {
                                     </td>
 
                                     mostrarsoluciones
+viene del navbar
+                                    <button class="btn btn-outline-success" type="submit">Search</button>
