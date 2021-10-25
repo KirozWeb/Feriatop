@@ -1,3 +1,4 @@
+// este archivo va en la carpeta router
 const express = require('express');
 const conexion = require('../conexion');
 const router = express.Router();

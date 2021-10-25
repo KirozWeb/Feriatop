@@ -11,39 +11,35 @@ usuario = [];
 perfil = []
 listausua = [];
 
+
+/******ESTA RUTA INVOCA LA PAGINA REGISTRARSE ES PARA TODOS LOS USUARIOS*******/
 routes.get('/registrar',(req,res)=>{
     res.render("registrarse",{
         arrayMascotas: usua
     })
 })
-
+/*******ESTA ES UNA API PARA QUE SE REGISTREN TODOS LOS USUARIOS******/
 routes.post('/guardar', (req, res) => {
     //console.log(req.body);
     conexion.query('INSERT INTO Registro_db SET ?',req.body,(error,rows)=>{
         if (error){
             return res.send(error);
         } else {
-
-            //res.send('<script>window.location.href="/database/consultas";</script>',{data:data});
             res.render("index",{titulo : "registro guardado con exito"})
-
         }
     })
-
 })
-
+/*******ESTA RUTA INVOCA LA PAGINA ACCESO ES PARA TODOS LOS USUARIOS*******/
 routes.get('/login',(req,res)=>{
     res.render("acceso")
 })
-
+/********ESTA API ES PARA QUE SE LOGUEEN TODOS LOS USUARIOS*******/
 routes.post('/ingresar',(req, res) => {
     usuario = []
     conexion.query('SELECT * FROM Registro_db WHERE NombreUsuario = ? AND ContrasenaUsuario = ?',[req.body.NombreUsuario,req.body.ContrasenaUsuario],function(error,results,fields){
         if (error){
             return res.send(error);
         } else {
-
-            //res.send('<script>window.location.href="/database/consultas";</script>');
             results.forEach(element => {
                 console.log("esto es consultas"+element.PerfilUsuario);
                 perfil.push(element.PerfilUsuario);
@@ -52,7 +48,6 @@ routes.post('/ingresar',(req, res) => {
                 console.log("esto es perfiles" + perfil)
                 console.log("esto es usuario " + usuario.PerfilUsuario);
                 req.session.rol = perfil;
-                //res.locals.user = req.session.rol;
                 console.log("esto ese res local "+req.session.rol)
 
                 if(perfil[0] === 'administrador'){
@@ -61,7 +56,6 @@ routes.post('/ingresar',(req, res) => {
                 }
                 if(perfil[0] === 'fabricante'){
                     req.session.rol = perfil[0];
-                    //console.log("esto es session " + req.session.rol)
                     res.render("index",{titulo : "su perfil es fabricante",
                     arrayMascotas : usuario})
                     }
@@ -87,8 +81,7 @@ routes.post('/ingresar',(req, res) => {
     })
     perfil = []
 })
-/*---------------------------------------*/
-//borrar_usuario/:id
+/**ESTA API CONSULTA TODAS LAS SOLUCIONES DE UNA SOLA MAQUINA--ADMINISTRADOR--OPERADOR-COOPERADOR-FABRICANTE**/
 routes.get('/consultamaquina/:id',(req, res) => {
     solu = []
     maq = []
@@ -99,8 +92,6 @@ routes.get('/consultamaquina/:id',(req, res) => {
             if (error){
                 return res.send(error);
             } else {
-
-                //res.send('<script>window.location.href="/database/consultas";</script>');
                 results.forEach(element => {
 
                     console.log(element)
@@ -117,9 +108,7 @@ routes.get('/consultamaquina/:id',(req, res) => {
             }
         })
     })
-
-
-
+/**ESTA API BUSCA MAQUINA SEGUN REFERENCIA ES PARA OPERADORES-COOPERADORES-FABRICANTES**/
 routes.post('/buscarmaquina',(req, res) => {
 solu = []
 maq = []
@@ -129,8 +118,6 @@ solu.push(req.body.IdUsuario)
         if (error){
             return res.send(error);
         } else {
-
-            //res.send('<script>window.location.href="/database/consultas";</script>');
             results.forEach(element => {
 
                 console.log(element)
@@ -148,7 +135,7 @@ solu.push(req.body.IdUsuario)
         }
     })
 })
-
+/***ESTA API GRABA SOLUCIONES Y ES DE OPERADORES-COOPERADORES-FABRICANTES****/
 routes.post('/grabarsolucion', (req, res) => {
     conexion.query('INSERT INTO Solucion_db SET ?',req.body,(error,rows)=>{
         if (error){
@@ -160,16 +147,16 @@ routes.post('/grabarsolucion', (req, res) => {
     })
 
 })
-
+/****ESTA RUTA ES PARA BUSCAR UN USUARIO Y PERTENECE --ADMINISTRADOR****/
 routes.get('/buscausuario',(req,res)=>{
     res.render("searchusuario",{
         arrayMascotas: usua
     })
 })
+/****ESTA API ES PARA BUSCAR UN USUARIO Y PERTENECE --ADMINISTRADOR****/
 routes.post('/buscar_usuario',(req, res) => {
     let id = req.params.id
     console.log(id)
-    //usuario = []
     user = []
     conexion.query('SELECT * FROM Registro_db WHERE IdUsuario = ?',[req.body.IdUsuario],function(error,results,fields){
         if (error){
@@ -182,37 +169,28 @@ routes.post('/buscar_usuario',(req, res) => {
             res.render("editar_usuario",{
                 arrayMascotas: user})
             }
-            /*res.render("editar_usuario",{
-                arrayMascotas: usuario})
-            }*/
     })
 })
+/**ESTA RUTA ES PARA DARSE DE BAJA PERTENECE A -OPERADORES-COOPERADORES-FABRICANTES**/
 routes.get('/darse_baja',(req,res)=>{
     res.render("darsebaja",{
         arrayMascotas: usuario
     })
 })
+/**ESTA RUTA ES PARA NO DARSE DE BAJA PERTENECE A -OPERADORES-COOPERADORES-FABRICANTES**/
 routes.get('/no_darse_baja',(req,res)=>{
 res.render("index",{titulo : "ha cancelado eliminar su registro",
                     arrayMascotas : usuario})
                 })
-/*routes.get('/si_darse_baja',(req,res)=>{
-    usuario = [];
-    res.render("index",{titulo : "se ha dado de baja",
-                    arrayMascotas : usuario})
-                })*/
-
+/**ESTA API ES PARA DARSE DE BAJA PERTENECE A -OPERADORES-COOPERADORES-FABRICANTES**/
 routes.get('/borrar_usuario/:id',(req, res) => {
     let id = req.params.id
     console.log(id)
-    //usuario = []
     user = []
     conexion.query('DELETE FROM Registro_db WHERE IdUsuario = ?', [id],function(error,results,fields){
         if (error){
             return res.send(error);
         } else {
-
-            /*res.send('<script>window.location.href="/database/consulta_usuario";</script>');*/
             if(req.session.rol[0] === "administrador"){
                 res.send('<script>window.location.href="/database/consulta_usuario";</script>');
             }
@@ -222,19 +200,15 @@ routes.get('/borrar_usuario/:id',(req, res) => {
                     arrayMascotas : usuario})
 
             }
-            /*res.render("consulta_usuario",{
-                arrayMascotas: user})*/
+
             }
-            /*res.render("editar_usuario",{
-                arrayMascotas: usuario})
-            }*/
+
     })
 })
-
+/***ESTA API ES PARA BUSCAR UN USUARIO Y PERTENECE --ADMINISTRADOR***/
 routes.get('/buscar_usuario/:id',(req, res) => {
     let id = req.params.id
     console.log(id)
-    //usuario = []
     user = []
     conexion.query('SELECT * FROM Registro_db WHERE IdUsuario = ?',[id],function(error,results,fields){
         if (error){
@@ -247,36 +221,11 @@ routes.get('/buscar_usuario/:id',(req, res) => {
             res.render("editar_usuario2",{
                 arrayMascotas: user})
             }
-            /*res.render("editar_usuario",{
-                arrayMascotas: usuario})
-            }*/
+
     })
 })
-/*
-routes.get('/actualizar_usuario/:id',(req, res) => {
-    let id = req.params.id
-    console.log(id)
-    //usuario = []
-    user = []
-    conexion.query('SELECT * FROM Registro_db WHERE IdUsuario = ?',[id],function(error,results,fields){
-        if (error){
-            return res.send(error);
-        } else {
-            results.forEach(element => {
-                user.push(element);
-                });
 
-            res.render("editar_usuario2",{
-                arrayMascotas: user})
-            }
-            /*res.render("editar_usuario",{
-                arrayMascotas: usuario})
-            }*/
-            /*
-    })
-})*/
-
-
+/**ESTA API SIRVE PARA ACTUALIZAR REGISTRO USUARIO Y ES PARA --ADMINISTRADOR Y OPERADOR-COOPERADOR-FABRICANTE**/
 routes.post('/updateusuario',(req, res) => {
     usua = []
     usua.push(req.body)
@@ -286,8 +235,6 @@ routes.post('/updateusuario',(req, res) => {
             console.log("hasta aqui llego")
             return res.send(error);
         } else {
-            /*console.log("registro actualizado")
-            res.render("index",{titulo : "Registro Actualizado"})*/
             console.log(req.session.rol)
             if(req.session.rol[0] === "administrador"){
                 res.send('<script>window.location.href="/database/consulta_usuario";</script>');
@@ -301,15 +248,15 @@ routes.post('/updateusuario',(req, res) => {
     })
 })
 
-
+/***ESTA API CONSULTA TODOS LOS USUARIOS DE LA TABLA -ADMINISTRADOR ***/
 routes.get('/consulta_usuario', (req, res) => {
-    //user = []
+
     conexion.query('SELECT * from Registro_db', function(error,results,fields) {
         if(error)
             throw error;
 
             results.forEach(element => {
-            //usuario.push(element);
+
             listausua.push(element);
             });
 
@@ -317,10 +264,10 @@ routes.get('/consulta_usuario', (req, res) => {
     res.render("usuarios2",{
         arrayMascotas: listausua
    })
-   //usuario = []
    listausua = []
 })
 
+/**ESTA RUTA INVOCA LA PAGINA VALIDADO ES PARA OPERADORES-COOPERADORES-FABRICANTES**/
 routes.get('/search_maquina',(req,res)=>{
     res.render("validado",{
         arrayMascotas: usuario

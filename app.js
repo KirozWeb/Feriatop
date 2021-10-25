@@ -43,8 +43,8 @@ console.log(__dirname)
 
 // Rutas Web
 app.use('/', require('./router/Rutasweb'));
-app.use('/mascotas', require('./router/Mascotas'));
-app.use('/usuario', require('./router/Usuarios'));
+//app.use('/mascotas', require('./router/Mascotas'));
+//app.use('/usuario', require('./router/Usuarios'));
 //app.use('/registrar', require('./router/Registrarse'));
 app.use('/database',routerbd)
 //app.use('/guardar', require('./router/Registrarse'));

@@ -1,3 +1,4 @@
+//este archivo va en la carpeta router
 //viene de consultas principio
 routes.get('/consultas', (req, res) => {
 
@@ -105,3 +106,72 @@ routes.post('/eliminar',(req, res) => {
                                     mostrarsoluciones
 viene del navbar
                                     <button class="btn btn-outline-success" type="submit">Search</button>
+viene de consulta /guardar
+
+                                    //res.send('<script>window.location.href="/database/consultas";</script>',{data:data});
+viene de api /ingresar
+//res.send('<script>window.location.href="/database/consultas";</script>');
+//res.locals.user = req.session.rol;
+//console.log("esto es session " + req.session.rol)
+
+viene de consulta maquina/:id
+//res.send('<script>window.location.href="/database/consultas";</script>');
+viene de consultamaquina/:id
+//borrar_usuario/:id
+viene de /buscarmaquina
+//res.send('<script>window.location.href="/database/consultas";</script>');
+viene de buscar_usuario
+usuario = []
+/*res.render("editar_usuario",{
+                arrayMascotas: usuario})
+            }*/</input>
+
+            /*routes.get('/si_darse_baja',(req,res)=>{
+    usuario = [];
+    res.render("index",{titulo : "se ha dado de baja",
+                    arrayMascotas : usuario})
+                })*/
+viene de borrar_usuario
+//usuario = []
+/*res.send('<script>window.location.href="/database/consulta_usuario";</script>');*/</input>
+/*res.render("consulta_usuario",{
+                arrayMascotas: user})*/
+/*res.render("editar_usuario",{
+                arrayMascotas: usuario})
+            }*/
+viene de buscar_usuario/:id
+//usuario = []
+/*res.render("editar_usuario",{
+                arrayMascotas: usuario})
+            }*/
+
+            /*
+routes.get('/actualizar_usuario/:id',(req, res) => {
+    let id = req.params.id
+    console.log(id)
+    //usuario = []
+    user = []
+    conexion.query('SELECT * FROM Registro_db WHERE IdUsuario = ?',[id],function(error,results,fields){
+        if (error){
+            return res.send(error);
+        } else {
+            results.forEach(element => {
+                user.push(element);
+                });
+
+            res.render("editar_usuario2",{
+                arrayMascotas: user})
+            }
+            /*res.render("editar_usuario",{
+                arrayMascotas: usuario})
+            }*/
+            /*
+    })
+})*/
+viene de updateusuario
+/*console.log("registro actualizado")
+            res.render("index",{titulo : "Registro Actualizado"})*/
+viene de consultausuario
+//user = []
+//usuario.push(element);
+//usuario = []
