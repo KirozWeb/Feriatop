@@ -1,5 +1,12 @@
 <%-include("template/cabecera.ejs", {tituloWeb: 'Pagina de inicio'}) %>
+<h1><%= titulo %></h1>
+    <div class="hero-text">
+        <h3 class="h3">Somos el Bootstrap de la industria, Copia y Pega soluciones.</h3>
+        <h6>Mind Gear, es una empresa Vallecaucana, que a traves de la información ofrece soluciones en tiempo real a la industria mundial.</h6>
+        <ul class="header-btn">
+            <li><a href="/database/login" class="main-btn btn-one">Iniciar Sesión</a></li>
+            <li><a href="/database/registrar" class="main-btn btn-two">Registrarse</a></li>
+        </ul>
+    </div>
 
-    <h1>Este es el index</h1>
-    <h2><%= titulo %></h2>
 <%-include("template/footer.ejs") %>

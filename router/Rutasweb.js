@@ -2,11 +2,11 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/',(req,res)=>{
-    res.render("index",{titulo : "mi titulo dinamico "});
+    res.render("index",{titulo : ""});
 })
 
 router.get('/servicios',(req,res)=>{
-    res.render("servicios",{tituloServicios : "mi titulo dinamico de servicios "});
+    res.render("servicios",{tituloServicios : ""});
 })
 
 module.exports = router;

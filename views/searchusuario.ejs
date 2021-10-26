@@ -3,14 +3,18 @@
     <div class="abs-center">
     <div class="p-3 mb-2 bg-dark text-white">
 <form class="border p-3 form" action="./buscar_usuario" id="formulario" name="formulario" method="post">
-    <label for="usuario">Id Usuario</label>
-    <br>
-    <input  type="text" id="IdUsuario" name="IdUsuario">
-    <br>
+    <div class="form-group">
+        <label for="usuario">Id Usuario</label>
+        <br>
+        <input  type="text" id="IdUsuario" name="IdUsuario">
+        <br>
 
-    <input type="submit" id="enviar" value="Buscar usuario" class="btn btn-outline-success">
+      <input type="submit" id="enviar" value="Buscar usuario" class="btn btn-outline-success">
+    </div>
+
+
 </form>
-</div>
+
 </div>
 </div>
 <%-include("template/footer.ejs") %>

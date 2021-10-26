@@ -18,6 +18,36 @@ routes.get('/registrar',(req,res)=>{
         arrayMascotas: usua
     })
 })
+
+routes.post('/comprobar',(req, res) => {
+    usuario = []
+    var contra = req.body;
+    console.log(contra)
+    conexion.query('SELECT * FROM Registro_db WHERE NombreUsuario = ? AND ContrasenaUsuario = ?',[req.body.NombreUsuario,req.body.contrasenaUsuario],function(error,results,fields){
+        if (error){
+            return res.send(error);
+        } else {
+            console.log(results.length)
+            if(results.length> 0)
+            {
+                res.render("index",{titulo : "sus datos estan errados",
+                arrayMascotas : usuario})
+            }
+            else{
+                conexion.query('INSERT INTO Registro_db SET ?',req.body,(error,rows)=>{
+                    if (error){
+                        return res.send(error);
+                    } else {
+                        res.render("index",{titulo : "registro fue comprobado y guardado con exito"})
+                    }
+                })
+            }
+        }
+    })
+    perfil = []
+})
+
+
 /*******ESTA ES UNA API PARA QUE SE REGISTREN TODOS LOS USUARIOS******/
 routes.post('/guardar', (req, res) => {
     //console.log(req.body);
@@ -36,10 +66,14 @@ routes.get('/login',(req,res)=>{
 /********ESTA API ES PARA QUE SE LOGUEEN TODOS LOS USUARIOS*******/
 routes.post('/ingresar',(req, res) => {
     usuario = []
+    var contra = req.body.ContrasenaUsuario;
     conexion.query('SELECT * FROM Registro_db WHERE NombreUsuario = ? AND ContrasenaUsuario = ?',[req.body.NombreUsuario,req.body.ContrasenaUsuario],function(error,results,fields){
         if (error){
             return res.send(error);
         } else {
+            console.log(results.length)
+            if(results.length> 0)
+            {
             results.forEach(element => {
                 console.log("esto es consultas"+element.PerfilUsuario);
                 perfil.push(element.PerfilUsuario);
@@ -51,8 +85,8 @@ routes.post('/ingresar',(req, res) => {
                 console.log("esto ese res local "+req.session.rol)
 
                 if(perfil[0] === 'administrador'){
-                    res.render("validado",{
-                        arrayMascotas : usuario})
+                    res.render("index",{titulo : "su perfil es administrador",
+                    arrayMascotas : usuario})
                 }
                 if(perfil[0] === 'fabricante'){
                     req.session.rol = perfil[0];
@@ -76,7 +110,11 @@ routes.post('/ingresar',(req, res) => {
                     res.render("index",{titulo : "su perfil es aprendiz",
                     arrayMascotas : usuario})
                 }
-
+            }
+            else{
+                res.render("index",{titulo : "su contrasena o usuario esta errado",
+                    arrayMascotas : usuario})
+            }
         }
     })
     perfil = []

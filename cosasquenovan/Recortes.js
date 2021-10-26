@@ -175,3 +175,4 @@ viene de consultausuario
 //user = []
 //usuario.push(element);
 //usuario = []
+border p-3 form
