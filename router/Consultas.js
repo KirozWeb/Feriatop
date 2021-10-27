@@ -69,7 +69,7 @@ routes.get('/crearmaquina',(req,res)=>{
 })
 
 /*******ESTA API ES PARA CREAR UNA MAQUINA*********/
-routes.get('/guardar',(req, res) => {
+routes.get('/crear_maquina',(req, res) => {
     solu = []
     maq = []
     cont = 0;
@@ -107,7 +107,7 @@ routes.get('/login',(req,res)=>{
 routes.post('/ingresar',(req, res) => {
     usuario = []
     var contra = req.body;
-    console.log(contra)
+    console.log("esto es contra "+contra)
     conexion.query('SELECT * FROM Registro_db WHERE NombreUsuario = ? AND ContrasenaUsuario = ?',[req.body.NombreUsuario,req.body.ContrasenaUsuario],function(error,results,fields){
         if (error){
             return res.send(error);
