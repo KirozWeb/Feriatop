@@ -50,6 +50,7 @@ routes.post('/comprobar',(req, res) => {
 
 
 /*******ESTA ES UNA API PARA QUE SE REGISTREN TODOS LOS USUARIOS******/
+/*
 routes.post('/guardar', (req, res) => {
     //console.log(req.body);
     conexion.query('INSERT INTO Registro_db SET ?',req.body,(error,rows)=>{
@@ -59,7 +60,7 @@ routes.post('/guardar', (req, res) => {
             res.render("index",{titulo : "registro guardado con exito"})
         }
     })
-})
+})*/
 /****** ******/
 routes.get('/crearmaquina',(req,res)=>{
     res.render("formcrearmaquina",{
@@ -68,7 +69,7 @@ routes.get('/crearmaquina',(req,res)=>{
 })
 
 /*******ESTA API ES PARA CREAR UNA MAQUINA*********/
-routes.get('/crearmaquinas',(req, res) => {
+routes.get('/crear_maquina',(req, res) => {
     solu = []
     maq = []
     cont = 0;
