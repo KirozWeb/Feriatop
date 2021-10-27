@@ -1,0 +1,21 @@
+<%-include("template/cabecera.ejs", {tituloWeb: 'Pagina de inicio'}) %>
+<div class="container">
+    <div class="abs-center">
+    <div class="p-3 mb-2 bg-dark text-white">
+<form class="border p-3 form" action="./crearmaquinas" id="formulario" name="formulario" method="post">
+    <label for="referenicamaquina">Referencia de Maquina</label>
+    <br>
+    <input  type="text" id="RefMaquina" name="RefMaquina">
+    <br>
+    <label for="descmaquina">Descripcion Maquina</label>
+    <br>
+    <input  type="text" id="DescMaquina" name="DescMaquina">
+    <br>
+    <br>
+    <input type="submit" id="enviar" value="Ingresar" class="btn btn-outline-success">
+    <a href="/database/registrar"><input type="button" id="enviar" value="Registro" class="btn btn-outline-success"></a>
+</form>
+</div>
+</div>
+</div>
+<%-include("template/footer.ejs") %>

@@ -18,7 +18,8 @@ routes.get('/registrar',(req,res)=>{
         arrayMascotas: usua
     })
 })
-
+/****ESTA ES UNA API PARA COMPROBAR QUE UN USUARIO Y CONTRASENA NO EXISTAN AL MISMO TIEMPO EN BASE DATOS****/
+/****SI NO EXISTEN SE GUARDAN EN LA BASE DE DATOS */
 routes.post('/comprobar',(req, res) => {
     usuario = []
     var contra = req.body;
@@ -59,6 +60,44 @@ routes.post('/guardar', (req, res) => {
         }
     })
 })
+/****** ******/
+routes.get('/crearmaquina',(req,res)=>{
+    res.render("formcrearmaquina",{
+        arrayMascotas: usuario
+    })
+})
+
+/*******ESTA API ES PARA CREAR UNA MAQUINA*********/
+routes.get('/crearmaquinas',(req, res) => {
+    solu = []
+    maq = []
+    cont = 0;
+    let Ref= req.params.RefMaquina
+    console.log("este es ref maquina "+Ref)
+        conexion.query('SELECT * FROM Maquina_db WHERE  RefMaquina = ?',[Ref],function(error,results,fields){
+            if (error){
+                return res.send(error);
+            } else {
+                if(results.length>0)
+               {
+                res.render("index",{titulo : "el nombre de maquina ya existe",
+                arrayMascotas : usuario})
+                }
+                else{
+                    conexion.query('INSERT INTO Maquina_db SET ?',req.body,(error,rows)=>{
+                        if (error){
+                            return res.send(error);
+                        } else {
+                            res.render("index",{titulo : "registro guardado con exito"})
+                        }
+                    })
+                }
+
+            }
+        })
+    })
+
+
 /*******ESTA RUTA INVOCA LA PAGINA ACCESO ES PARA TODOS LOS USUARIOS*******/
 routes.get('/login',(req,res)=>{
     res.render("acceso")
@@ -66,7 +105,8 @@ routes.get('/login',(req,res)=>{
 /********ESTA API ES PARA QUE SE LOGUEEN TODOS LOS USUARIOS*******/
 routes.post('/ingresar',(req, res) => {
     usuario = []
-    var contra = req.body.ContrasenaUsuario;
+    var contra = req.body;
+    console.log(contra)
     conexion.query('SELECT * FROM Registro_db WHERE NombreUsuario = ? AND ContrasenaUsuario = ?',[req.body.NombreUsuario,req.body.ContrasenaUsuario],function(error,results,fields){
         if (error){
             return res.send(error);
@@ -305,7 +345,7 @@ routes.get('/consulta_usuario', (req, res) => {
    listausua = []
 })
 
-/**ESTA RUTA INVOCA LA PAGINA VALIDADO ES PARA OPERADORES-COOPERADORES-FABRICANTES**/
+/**ESTA RUTA INVOCA LA PAGINA VALIDADO DONDE UN FORMULARIO BUSCA UNA MAQUINA ES PARA OPERADORES-COOPERADORES-FABRICANTES**/
 routes.get('/search_maquina',(req,res)=>{
     res.render("validado",{
         arrayMascotas: usuario
