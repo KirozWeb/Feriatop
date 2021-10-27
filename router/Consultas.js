@@ -69,7 +69,7 @@ routes.get('/crearmaquina',(req,res)=>{
 })
 
 /*******ESTA API ES PARA CREAR UNA MAQUINA*********/
-routes.get('/crear_maquina',(req, res) => {
+routes.get('/guardar',(req, res) => {
     solu = []
     maq = []
     cont = 0;
