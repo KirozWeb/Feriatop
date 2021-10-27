@@ -48,11 +48,9 @@ routes.post('/comprobar',(req, res) => {
     perfil = []
 })
 
-
-/*******ESTA ES UNA API PARA QUE SE REGISTREN TODOS LOS USUARIOS******/
-/*
-routes.post('/guardar', (req, res) => {
-    //console.log(req.body);
+/*******ESTA API ES PARA GUARDAR USUARIOS
+routes.get('/guardar',(req, res) => {
+console.log(req.body);
     conexion.query('INSERT INTO Registro_db SET ?',req.body,(error,rows)=>{
         if (error){
             return res.send(error);
@@ -60,20 +58,16 @@ routes.post('/guardar', (req, res) => {
             res.render("index",{titulo : "registro guardado con exito"})
         }
     })
-})*/
-/****** ******/
-routes.get('/crearmaquina',(req,res)=>{
-    res.render("formcrearmaquina",{
-        arrayMascotas: usuario
-    })
-})
+    })*********/
 
-/*******ESTA API ES PARA CREAR UNA MAQUINA*********/
-routes.get('/crear_maquina',(req, res) => {
+/*******ESTA ES UNA API PARA CREAR MAQUINAS ES DEL ADMINISTRADOR******/
+
+routes.post('/crear_maquina', (req, res) => {
+
     solu = []
     maq = []
     cont = 0;
-    let Ref= req.params.RefMaquina
+    let Ref= req.body.RefMaquina;
     console.log("este es ref maquina "+Ref)
         conexion.query('SELECT * FROM Maquina_db WHERE  RefMaquina = ?',[Ref],function(error,results,fields){
             if (error){
@@ -96,7 +90,14 @@ routes.get('/crear_maquina',(req, res) => {
 
             }
         })
+})
+/****** ******/
+routes.get('/crearmaquina',(req,res)=>{
+    res.render("formcrearmaquina",{
+        arrayMascotas: usuario
     })
+})
+
 
 
 /*******ESTA RUTA INVOCA LA PAGINA ACCESO ES PARA TODOS LOS USUARIOS*******/
@@ -107,7 +108,7 @@ routes.get('/login',(req,res)=>{
 routes.post('/ingresar',(req, res) => {
     usuario = []
     var contra = req.body;
-    console.log("esto es contra "+contra)
+    console.log("esto una prueba que no se guarda"+contra)
     conexion.query('SELECT * FROM Registro_db WHERE NombreUsuario = ? AND ContrasenaUsuario = ?',[req.body.NombreUsuario,req.body.ContrasenaUsuario],function(error,results,fields){
         if (error){
             return res.send(error);
