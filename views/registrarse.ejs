@@ -5,27 +5,32 @@
 <form class="border p-3 form" action="./comprobar" id="formulario" name="formulario" method="post">
     <label for="usuario">Usuario</label>
     <br>
-    <input  type="text" id="NombreUsuario" name="NombreUsuario">
+    <input  type="text" id="NombreUsuario" name="NombreUsuario" required>
     <br>
     <label for="contrasena">Contraseña</label>
     <br>
-    <input  type="password" id="ContrasenaUsuario" name="contrasenaUsuario">
+    <input  type="password" id="ContrasenaUsuario" name="contrasenaUsuario" required>
     <br>
     <label for="perfilusuario">Perfil Usuario</label>
     <br>
-    <input type="text" id="PerfilUsuario" name="PerfilUsuario">
+    <select id="PerfilUsuario"name="PerfilUsuario" required>
+        <option value="operador" selected>Operador</option>
+        <option value="cooperador">Cooperador</option>
+        <option value="fabricante">Fabricante</option>
+        <option value="aprendiz">Aprendiz</option>
+      </select>
     <br>
     <label for="telefonousuario">Telefono Usuario</label>
     <br>
-    <input type="text" id="TelefonoUsuario" name="TelefonoUsuario">
+    <input type="text" id="TelefonoUsuario" name="TelefonoUsuario" required>
     <br>
     <label for="correousuario">Correo Usuario</label>
     <br>
-    <input type="text" id="CorreoUsuario" name="CorreoUsuario">
+    <input type="email" id="CorreoUsuario" name="CorreoUsuario" required>
     <br>
     <label for="paisusuario">Pais Usuario</label>
     <br>
-    <input type="text" id="PaisUsuario" name="PaisUsuario">
+    <input type="text" id="PaisUsuario" name="PaisUsuario" required>
     <br>
     <br>
     <input type="submit" id="enviar" value="Guardar registros" class="btn btn-outline-success">

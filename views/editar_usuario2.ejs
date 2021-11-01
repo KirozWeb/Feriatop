@@ -26,27 +26,37 @@
                             <form class="border p-3 form" action="../updateusuario" id="formulario" name="formulario" method="post">
                                 <label for="nombre">Nombre</label>
                                 <br>
-                                <input  type="text" id="NombreUsuario" name="nombreUsuario" value="<%= mascota.NombreUsuario%>">
+                                <input  type="text" id="NombreUsuario" name="nombreUsuario" value="<%= mascota.NombreUsuario%>" required>
                                 <br>
                                 <label for="contrasena">Contraseña</label>
                                 <br>
-                                <input  type="text" id="ContrasenaUsuario" name="ContrasenaUsuario" value="<%= mascota.ContrasenaUsuario%>">
+                                <input  type="text" id="ContrasenaUsuario" name="ContrasenaUsuario" value="<%= mascota.ContrasenaUsuario%>" required>
+                                <br>
                                 <br>
                                 <label for="perfilusuario">Perfil Usuario</label>
                                 <br>
-                                <input type="text" id="PerfilUsuario" name="PerfilUsuario" value="<%= mascota.PerfilUsuario%>">
+                                <input  type="text" value="<%= mascota.PerfilUsuario%>" readonly>
+                                <br>
+                                <select id="PerfilUsuario"name="PerfilUsuario" required>
+                                    <option value="administrador">Administrador</option>
+                                    <option value="operador">Operador</option>
+                                    <option value="cooperador">Cooperador</option>
+                                    <option value="fabricante">Fabricante</option>
+                                    <option value="aprendiz">Aprendiz</option>
+                                  </select>
+                                <br>
                                 <br>
                                 <label for="telefonousuario">Telefono Usuario</label>
                                 <br>
-                                <input type="text" id="TelefonoUsuario" name="TelefonoUsuario" value="<%= mascota.TelefonoUsuario%>">
+                                <input type="text" id="TelefonoUsuario" name="TelefonoUsuario" value="<%= mascota.TelefonoUsuario%>" required>
                                 <br>
                                 <label for="correousuario">Correo Usuario</label>
                                 <br>
-                                <input type="text" id="CorreoUsuario" name="CorreoUsuario" value="<%= mascota.CorreoUsuario%>">
+                                <input type="text" id="CorreoUsuario" name="CorreoUsuario" value="<%= mascota.CorreoUsuario%>" required>
                                 <br>
                                 <label for="paisusuario">Pais Usuario</label>
                                 <br>
-                                <input type="text" id="PaisUsuario" name="PaisUsuario"value="<%= mascota.PaisUsuario%>">
+                                <input type="text" id="PaisUsuario" name="PaisUsuario"value="<%= mascota.PaisUsuario%>"required>
                                 <input  type="hidden" id="IdUsuario" name="IdUsuario" value="<%= mascota.IdUsuario%>">
                                 <br>
                                 <br>

@@ -75,7 +75,7 @@ routes.post('/crear_maquina', (req, res) => {
             } else {
                 if(results.length>0)
                {
-                res.render("index",{titulo : "el nombre de maquina ya existe",
+                res.render("index",{titulo : "la referencia de la maquina ya existe",
                 arrayMascotas : usuario})
                 }
                 else{
